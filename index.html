@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC rev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section{
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(25, 25, 25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+        }
+
+        .calculator{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            background-color: #262626;
+            padding: 30px 0px 40px 0px;
+        }
+
+        .calculator .inputs{
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            color: aliceblue;
+        }
+
+        .calculator h2{
+            color: aliceblue;
+            margin-bottom: 20px;
+        }
+
+        .calculator h2::after{
+            
+        }
+
+        .inputs input{
+            padding: 10px;
+            border: none;
+            outline: none;
+            margin-bottom: 15px;
+            background-color: #403F43;
+            width: 230px;
+            color: aliceblue;
+        }
+
+        .inputs div{
+            display: flex;
+            align-items: center;
+        }
+
+        .inputs div i{
+            background-color: #403F43;
+            height: 36px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn{
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #169947;
+            color: aliceblue;
+            transition: .3s;
+        }
+
+        .btn:hover{
+            background-color: #24a854;
+        }
+
+        .result{
+            background-color: #403F43;
+            height: 100px;
+            width: 250px;
+            margin-top: 30px;
+            color:aliceblue;
+            padding: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="img">
+            <img src="../Calculadora IMC/img/undraw_personal_trainer_re_cnua.svg" alt="" width="350px" style="margin-top: 95px;">
+        </div>
+        <div class="calculator">
+            <h2>Calculadora - IMC</h2>
+            <div class="inputs">
+                <span>Altura:</span>
+                <div>
+                    <i class="fa-solid fa-ruler"></i>
+                    <input type="number" name="altura" id="altura" placeholder="Digite sua altura">
+                </div>
+                <span>Peso:</span>
+                <div>
+                    <i class="fa-solid fa-weight-hanging"></i>
+                    <input type="number" name="peso" id="peso" placeholder="Digite seu peso">
+                </div>
+                <button class="btn" id="btn">Calcular</button>
+            </div>
+
+            <div class="result" id="result">
+
+            </div>
+    </section>
+
+    <script>
+        const calculator = document.getElementById('btn')
+
+        calculator.addEventListener('click', calcular)
+
+        function calcular(){
+            const altura = document.getElementById('altura').value
+            const peso = document.getElementById('peso').value
+            let resultado = document.getElementById('result')
+
+            let imc = (peso / altura**2).toFixed(2)
+
+            if(imc < 18.5){
+                resultado.textContent = `Seu IMC é ${imc}, você está abaixo do peso!`
+            }else if(imc >18.5 && imc < 24.9){
+                 resultado.textContent = `Seu IMC é ${imc}, você está como o peso ideal!`
+            }else if(imc < 29.9){
+                 resultado.textContent = `Seu IMC é ${imc}, você está com sobrepeso!`
+            }else if(imc < 34.9){
+                 resultado.textContent = `Seu IMC é ${imc}, você está com obesidade grau 1!`
+            }else if(imc < 39.9){
+                 resultado.textContent = `Seu IMC é ${imc}, você está com obesidade grau 2!`
+            }else if(imc > 40.0){
+                 resultado.textContent = `Seu IMC é ${imc}, você está com obesidade sobrenatural!`
+            }
+        }
+    </script>
+</body>
+</html>
